@@ -66,13 +66,13 @@ class Gizmo(SyncAPIClient):
     ) -> None:
         """Construct a new synchronous Gizmo client instance.
 
-        This automatically infers the `api_key` argument from the `GIZMO_SDK_API_KEY` environment variable if it is not provided.
+        This automatically infers the `api_key` argument from the `GIZMO_API_KEY` environment variable if it is not provided.
         """
         if api_key is None:
-            api_key = os.environ.get("GIZMO_SDK_API_KEY")
+            api_key = os.environ.get("GIZMO_API_KEY")
         if api_key is None:
             raise GizmoError(
-                "The api_key client option must be set either by passing api_key to the client or by setting the GIZMO_SDK_API_KEY environment variable"
+                "The api_key client option must be set either by passing api_key to the client or by setting the GIZMO_API_KEY environment variable"
             )
         self.api_key = api_key
 
@@ -234,13 +234,13 @@ class AsyncGizmo(AsyncAPIClient):
     ) -> None:
         """Construct a new async AsyncGizmo client instance.
 
-        This automatically infers the `api_key` argument from the `GIZMO_SDK_API_KEY` environment variable if it is not provided.
+        This automatically infers the `api_key` argument from the `GIZMO_API_KEY` environment variable if it is not provided.
         """
         if api_key is None:
-            api_key = os.environ.get("GIZMO_SDK_API_KEY")
+            api_key = os.environ.get("GIZMO_API_KEY")
         if api_key is None:
             raise GizmoError(
-                "The api_key client option must be set either by passing api_key to the client or by setting the GIZMO_SDK_API_KEY environment variable"
+                "The api_key client option must be set either by passing api_key to the client or by setting the GIZMO_API_KEY environment variable"
             )
         self.api_key = api_key
 

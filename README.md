@@ -29,7 +29,7 @@ import os
 from gizmo_sdk import Gizmo
 
 client = Gizmo(
-    api_key=os.environ.get("GIZMO_SDK_API_KEY"),  # This is the default and can be omitted
+    api_key=os.environ.get("GIZMO_API_KEY"),  # This is the default and can be omitted
 )
 
 application = client.applications.retrieve(
@@ -40,7 +40,7 @@ print(application.id)
 
 While you can provide an `api_key` keyword argument,
 we recommend using [python-dotenv](https://pypi.org/project/python-dotenv/)
-to add `GIZMO_SDK_API_KEY="My API Key"` to your `.env` file
+to add `GIZMO_API_KEY="My API Key"` to your `.env` file
 so that your API Key is not stored in source control.
 
 ## Async usage
@@ -53,7 +53,7 @@ import asyncio
 from gizmo_sdk import AsyncGizmo
 
 client = AsyncGizmo(
-    api_key=os.environ.get("GIZMO_SDK_API_KEY"),  # This is the default and can be omitted
+    api_key=os.environ.get("GIZMO_API_KEY"),  # This is the default and can be omitted
 )
 
 
