@@ -340,7 +340,7 @@ class TestGizmo:
         assert request.headers.get("Authorization") == f"Bearer {api_key}"
 
         with pytest.raises(GizmoError):
-            with update_env(**{"GIZMO_SDK_API_KEY": Omit()}):
+            with update_env(**{"GIZMO_API_KEY": Omit()}):
                 client2 = Gizmo(base_url=base_url, api_key=None, _strict_response_validation=True)
             _ = client2
 
@@ -1141,7 +1141,7 @@ class TestAsyncGizmo:
         assert request.headers.get("Authorization") == f"Bearer {api_key}"
 
         with pytest.raises(GizmoError):
-            with update_env(**{"GIZMO_SDK_API_KEY": Omit()}):
+            with update_env(**{"GIZMO_API_KEY": Omit()}):
                 client2 = AsyncGizmo(base_url=base_url, api_key=None, _strict_response_validation=True)
             _ = client2
 
