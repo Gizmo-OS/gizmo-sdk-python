@@ -65,6 +65,7 @@ class ApplicationsResource(SyncAPIResource):
         subject_property_city: str | Omit = omit,
         subject_property_street_address: str | Omit = omit,
         subject_property_zip: str | Omit = omit,
+        team_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -104,6 +105,7 @@ class ApplicationsResource(SyncAPIResource):
                     "subject_property_city": subject_property_city,
                     "subject_property_street_address": subject_property_street_address,
                     "subject_property_zip": subject_property_zip,
+                    "team_id": team_id,
                 },
                 application_create_params.ApplicationCreateParams,
             ),
@@ -164,6 +166,7 @@ class ApplicationsResource(SyncAPIResource):
         subject_property_state: State | Omit = omit,
         subject_property_street_address: str | Omit = omit,
         subject_property_zip: str | Omit = omit,
+        team_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -205,6 +208,7 @@ class ApplicationsResource(SyncAPIResource):
                     "subject_property_state": subject_property_state,
                     "subject_property_street_address": subject_property_street_address,
                     "subject_property_zip": subject_property_zip,
+                    "team_id": team_id,
                 },
                 application_update_params.ApplicationUpdateParams,
             ),
@@ -252,6 +256,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         subject_property_city: str | Omit = omit,
         subject_property_street_address: str | Omit = omit,
         subject_property_zip: str | Omit = omit,
+        team_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -291,6 +296,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
                     "subject_property_city": subject_property_city,
                     "subject_property_street_address": subject_property_street_address,
                     "subject_property_zip": subject_property_zip,
+                    "team_id": team_id,
                 },
                 application_create_params.ApplicationCreateParams,
             ),
@@ -351,6 +357,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         subject_property_state: State | Omit = omit,
         subject_property_street_address: str | Omit = omit,
         subject_property_zip: str | Omit = omit,
+        team_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -392,6 +399,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
                     "subject_property_state": subject_property_state,
                     "subject_property_street_address": subject_property_street_address,
                     "subject_property_zip": subject_property_zip,
+                    "team_id": team_id,
                 },
                 application_update_params.ApplicationUpdateParams,
             ),

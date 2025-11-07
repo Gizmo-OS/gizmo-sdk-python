@@ -52,6 +52,7 @@ class TestApplications:
             subject_property_city="subjectPropertyCity",
             subject_property_street_address="subjectPropertyStreetAddress",
             subject_property_zip="subjectPropertyZip",
+            team_id="teamId",
         )
         assert_matches_type(ApplicationCreateResponse, application, path=["response"])
 
@@ -160,6 +161,7 @@ class TestApplications:
             subject_property_state="al",
             subject_property_street_address="subjectPropertyStreetAddress",
             subject_property_zip="subjectPropertyZip",
+            team_id="teamId",
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
@@ -234,6 +236,7 @@ class TestAsyncApplications:
             subject_property_city="subjectPropertyCity",
             subject_property_street_address="subjectPropertyStreetAddress",
             subject_property_zip="subjectPropertyZip",
+            team_id="teamId",
         )
         assert_matches_type(ApplicationCreateResponse, application, path=["response"])
 
@@ -342,6 +345,7 @@ class TestAsyncApplications:
             subject_property_state="al",
             subject_property_street_address="subjectPropertyStreetAddress",
             subject_property_zip="subjectPropertyZip",
+            team_id="teamId",
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
