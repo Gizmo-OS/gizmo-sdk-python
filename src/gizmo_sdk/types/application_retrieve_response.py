@@ -13,6 +13,8 @@ __all__ = ["ApplicationRetrieveResponse"]
 
 
 class ApplicationRetrieveResponse(BaseModel):
+    """The Application object"""
+
     id: str
 
     created_at: float = FieldInfo(alias="createdAt")
