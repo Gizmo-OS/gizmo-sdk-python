@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Mapping
+from typing import TYPE_CHECKING, Any, Mapping
 from typing_extensions import Self, override
 
 import httpx
@@ -20,8 +20,8 @@ from ._types import (
     not_given,
 )
 from ._utils import is_given, get_async_library
+from ._compat import cached_property
 from ._version import __version__
-from .resources import applications
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import GizmoError, APIStatusError
 from ._base_client import (
@@ -30,14 +30,14 @@ from ._base_client import (
     AsyncAPIClient,
 )
 
+if TYPE_CHECKING:
+    from .resources import applications
+    from .resources.applications import ApplicationsResource, AsyncApplicationsResource
+
 __all__ = ["Timeout", "Transport", "ProxiesTypes", "RequestOptions", "Gizmo", "AsyncGizmo", "Client", "AsyncClient"]
 
 
 class Gizmo(SyncAPIClient):
-    applications: applications.ApplicationsResource
-    with_raw_response: GizmoWithRawResponse
-    with_streaming_response: GizmoWithStreamedResponse
-
     # client options
     api_key: str
 
@@ -92,9 +92,19 @@ class Gizmo(SyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.applications = applications.ApplicationsResource(self)
-        self.with_raw_response = GizmoWithRawResponse(self)
-        self.with_streaming_response = GizmoWithStreamedResponse(self)
+    @cached_property
+    def applications(self) -> ApplicationsResource:
+        from .resources.applications import ApplicationsResource
+
+        return ApplicationsResource(self)
+
+    @cached_property
+    def with_raw_response(self) -> GizmoWithRawResponse:
+        return GizmoWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> GizmoWithStreamedResponse:
+        return GizmoWithStreamedResponse(self)
 
     @property
     @override
@@ -202,10 +212,6 @@ class Gizmo(SyncAPIClient):
 
 
 class AsyncGizmo(AsyncAPIClient):
-    applications: applications.AsyncApplicationsResource
-    with_raw_response: AsyncGizmoWithRawResponse
-    with_streaming_response: AsyncGizmoWithStreamedResponse
-
     # client options
     api_key: str
 
@@ -260,9 +266,19 @@ class AsyncGizmo(AsyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.applications = applications.AsyncApplicationsResource(self)
-        self.with_raw_response = AsyncGizmoWithRawResponse(self)
-        self.with_streaming_response = AsyncGizmoWithStreamedResponse(self)
+    @cached_property
+    def applications(self) -> AsyncApplicationsResource:
+        from .resources.applications import AsyncApplicationsResource
+
+        return AsyncApplicationsResource(self)
+
+    @cached_property
+    def with_raw_response(self) -> AsyncGizmoWithRawResponse:
+        return AsyncGizmoWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncGizmoWithStreamedResponse:
+        return AsyncGizmoWithStreamedResponse(self)
 
     @property
     @override
@@ -370,23 +386,55 @@ class AsyncGizmo(AsyncAPIClient):
 
 
 class GizmoWithRawResponse:
+    _client: Gizmo
+
     def __init__(self, client: Gizmo) -> None:
-        self.applications = applications.ApplicationsResourceWithRawResponse(client.applications)
+        self._client = client
+
+    @cached_property
+    def applications(self) -> applications.ApplicationsResourceWithRawResponse:
+        from .resources.applications import ApplicationsResourceWithRawResponse
+
+        return ApplicationsResourceWithRawResponse(self._client.applications)
 
 
 class AsyncGizmoWithRawResponse:
+    _client: AsyncGizmo
+
     def __init__(self, client: AsyncGizmo) -> None:
-        self.applications = applications.AsyncApplicationsResourceWithRawResponse(client.applications)
+        self._client = client
+
+    @cached_property
+    def applications(self) -> applications.AsyncApplicationsResourceWithRawResponse:
+        from .resources.applications import AsyncApplicationsResourceWithRawResponse
+
+        return AsyncApplicationsResourceWithRawResponse(self._client.applications)
 
 
 class GizmoWithStreamedResponse:
+    _client: Gizmo
+
     def __init__(self, client: Gizmo) -> None:
-        self.applications = applications.ApplicationsResourceWithStreamingResponse(client.applications)
+        self._client = client
+
+    @cached_property
+    def applications(self) -> applications.ApplicationsResourceWithStreamingResponse:
+        from .resources.applications import ApplicationsResourceWithStreamingResponse
+
+        return ApplicationsResourceWithStreamingResponse(self._client.applications)
 
 
 class AsyncGizmoWithStreamedResponse:
+    _client: AsyncGizmo
+
     def __init__(self, client: AsyncGizmo) -> None:
-        self.applications = applications.AsyncApplicationsResourceWithStreamingResponse(client.applications)
+        self._client = client
+
+    @cached_property
+    def applications(self) -> applications.AsyncApplicationsResourceWithStreamingResponse:
+        from .resources.applications import AsyncApplicationsResourceWithStreamingResponse
+
+        return AsyncApplicationsResourceWithStreamingResponse(self._client.applications)
 
 
 Client = Gizmo
