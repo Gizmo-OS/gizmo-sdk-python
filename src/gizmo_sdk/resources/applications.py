@@ -8,7 +8,7 @@ import httpx
 
 from ..types import State, Milestone, LoanPurpose, application_create_params, application_update_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -65,6 +65,7 @@ class ApplicationsResource(SyncAPIResource):
         subject_property_city: str | Omit = omit,
         subject_property_street_address: str | Omit = omit,
         subject_property_zip: str | Omit = omit,
+        team_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -104,6 +105,7 @@ class ApplicationsResource(SyncAPIResource):
                     "subject_property_city": subject_property_city,
                     "subject_property_street_address": subject_property_street_address,
                     "subject_property_zip": subject_property_zip,
+                    "team_id": team_id,
                 },
                 application_create_params.ApplicationCreateParams,
             ),
@@ -139,7 +141,7 @@ class ApplicationsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/applications/{id}",
+            path_template("/applications/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -164,6 +166,7 @@ class ApplicationsResource(SyncAPIResource):
         subject_property_state: State | Omit = omit,
         subject_property_street_address: str | Omit = omit,
         subject_property_zip: str | Omit = omit,
+        team_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -188,7 +191,7 @@ class ApplicationsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._patch(
-            f"/applications/{id}",
+            path_template("/applications/{id}", id=id),
             body=maybe_transform(
                 {
                     "crm_id": crm_id,
@@ -205,6 +208,7 @@ class ApplicationsResource(SyncAPIResource):
                     "subject_property_state": subject_property_state,
                     "subject_property_street_address": subject_property_street_address,
                     "subject_property_zip": subject_property_zip,
+                    "team_id": team_id,
                 },
                 application_update_params.ApplicationUpdateParams,
             ),
@@ -252,6 +256,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         subject_property_city: str | Omit = omit,
         subject_property_street_address: str | Omit = omit,
         subject_property_zip: str | Omit = omit,
+        team_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -291,6 +296,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
                     "subject_property_city": subject_property_city,
                     "subject_property_street_address": subject_property_street_address,
                     "subject_property_zip": subject_property_zip,
+                    "team_id": team_id,
                 },
                 application_create_params.ApplicationCreateParams,
             ),
@@ -326,7 +332,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/applications/{id}",
+            path_template("/applications/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -351,6 +357,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         subject_property_state: State | Omit = omit,
         subject_property_street_address: str | Omit = omit,
         subject_property_zip: str | Omit = omit,
+        team_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -375,7 +382,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._patch(
-            f"/applications/{id}",
+            path_template("/applications/{id}", id=id),
             body=await async_maybe_transform(
                 {
                     "crm_id": crm_id,
@@ -392,6 +399,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
                     "subject_property_state": subject_property_state,
                     "subject_property_street_address": subject_property_street_address,
                     "subject_property_zip": subject_property_zip,
+                    "team_id": team_id,
                 },
                 application_update_params.ApplicationUpdateParams,
             ),

@@ -13,6 +13,8 @@ __all__ = ["ApplicationRetrieveResponse"]
 
 
 class ApplicationRetrieveResponse(BaseModel):
+    """The Application object"""
+
     id: str
 
     created_at: float = FieldInfo(alias="createdAt")
@@ -49,5 +51,7 @@ class ApplicationRetrieveResponse(BaseModel):
     subject_property_street_address: Optional[str] = FieldInfo(alias="subjectPropertyStreetAddress", default=None)
 
     subject_property_zip: Optional[str] = FieldInfo(alias="subjectPropertyZip", default=None)
+
+    team_id: Optional[str] = FieldInfo(alias="teamId", default=None)
 
     updated_at: Optional[float] = FieldInfo(alias="updatedAt", default=None)

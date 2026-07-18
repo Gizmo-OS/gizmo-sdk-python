@@ -41,3 +41,5 @@ class ApplicationUpdateParams(TypedDict, total=False):
     subject_property_street_address: Annotated[str, PropertyInfo(alias="subjectPropertyStreetAddress")]
 
     subject_property_zip: Annotated[str, PropertyInfo(alias="subjectPropertyZip")]
+
+    team_id: Annotated[str, PropertyInfo(alias="teamId")]
